@@ -59,9 +59,10 @@
 }
 
 - (void)clearNotifyBlocks {
-    for (NSString* key in self.notifyBlockByUUIDs) {
-        [self clearNotifyBlockForKey:key];
-    }
+  NSArray<NSString *> *keys = self.notifyBlockByUUIDs.allKeys;
+  for (NSString* key in keys) {
+    [self clearNotifyBlockForKey:key];
+  }
 }
 
 - (NSString *)name
@@ -125,14 +126,20 @@
 
 - (void)cancelAllCommands
 {
-    NSError *error = [NSError errorWithDomain:RZBluetoothErrorDomain
-                                         code:RZBluetoothConnectionCancelled
-                                     userInfo:@{}];
-
-    for (RZBCommand *command in [self.dispatch commands]) {
-        [self.dispatch completeCommand:command
-                            withObject:nil error:error];
+  NSError *error = [NSError errorWithDomain:RZBluetoothErrorDomain
+                                       code:RZBluetoothConnectionCancelled
+                                   userInfo:@{}];
+  
+  NSArray *commands = self.dispatch.commands.copy;
+  for (RZBCommand *command in commands) {
+    if (command.isExecuted == YES && command.isCompleted == NO) {
+      // We are in the completion handler of this command. Do not complete it or we will loop infinitely.
+      continue;
     }
+    
+    [self.dispatch completeCommand:command
+                        withObject:nil error:error];
+  }
 }
 
 - (void)connectWithCompletion:(RZBErrorBlock)completion
