@@ -77,7 +77,8 @@
 
 - (CBPeripheralState)state
 {
-    return self.corePeripheral.state;
+    NSArray *commands = [self.dispatch commandsOfClass: [RZBConnectCommand class] matchingUUIDPath: RZBUUIDP(self.identifier)];
+    return (commands != nil && [commands count] != 0) ? CBPeripheralStateConnecting : self.corePeripheral.state;
 }
 
 - (NSArray<CBService *> *)services
