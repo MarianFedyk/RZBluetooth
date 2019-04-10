@@ -64,6 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic, readonly) CBManagerState state;
 
 /**
+ * The subclass of RZBPeripheral to use
+ */
+@property (nonatomic, copy) Class peripheralClass;
+
+/**
  * This block will be triggered whenever the central manager state changes.
  * You can also use NSNotificationCenter to watch for notifications named RZBCentralManagerStateChangeNotification.
  */
