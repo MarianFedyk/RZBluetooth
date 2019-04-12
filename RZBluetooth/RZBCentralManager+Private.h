@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic, readonly) RZBCommandDispatch *dispatch;
 @property (strong, nonatomic, readonly) NSMutableDictionary<NSUUID *, RZBPeripheral *> *peripheralsByUUID;
+@property (strong, nonatomic, readonly) Class peripheralClass;
 
 @property (nonatomic, copy) RZBScanBlock activeScanBlock;
 
