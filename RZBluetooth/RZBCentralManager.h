@@ -70,6 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) RZBStateBlock centralStateHandler;
 
 /**
+ * This block will be triggered whenever the peripheral is ready to send write without response.
+ */
+@property (nonatomic, copy) RZBWWRBlock writeWithoutResponseHandler;
+
+/**
  * This block will be triggered when restored with an array of RZBPeripheral objects.
  * You can also use NSNotificationCenter to watch for notifications named RZBCentralManagerRestorePeripheralNotification.
  *

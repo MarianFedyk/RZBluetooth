@@ -39,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^RZBScanBlock)(RZBScanInfo *__nullable scanInfo, NSError *__nullable error);
 typedef void(^RZBErrorBlock)(NSError *__nullable error);
 typedef void(^RZBStateBlock)(CBManagerState state);
+typedef void(^RZBWWRBlock)(CBPeripheral *peripheral);
 typedef void(^RZBRestorationBlock)(NSArray<RZBPeripheral *> *peripherals);
 typedef void(^RZBRSSIBlock)(NSNumber *__nullable RSSI, NSError *__nullable error);
 typedef void(^RZBConnectionBlock)(RZBPeripheralStateEvent state, NSError *__nullable error);
