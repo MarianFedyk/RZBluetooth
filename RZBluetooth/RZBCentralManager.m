@@ -434,7 +434,6 @@
   
 - (void)peripheralIsReadyToSendWriteWithoutResponse:(CBPeripheral *)peripheral
 {
-    RZBLogDelegate(@"%@ - %@ %@ %@", NSStringFromSelector(_cmd), RZBLogIdentifier(peripheral), error);
     if (self.writeWithoutResponseHandler) {
         self.writeWithoutResponseHandler(peripheral);
     }
